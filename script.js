@@ -1,6 +1,8 @@
+//State for the answer and current operation
 let ans = '';
 let currOp ='';
 
+//Callbacks
 function operandCallback(e){
     const field = document.querySelector(".input.field");
     if(field.textContent != "0")field.textContent+=e.target.textContent;
@@ -17,6 +19,7 @@ function backSpaceCallBack(){
     if(field.textContent) field.textContent=field.textContent.slice(0,field.textContent.length-1)
 }
 
+//Helper function for calculating
 function calculate(a,b,op){
     switch(op){
         case "+":
@@ -35,6 +38,7 @@ function calculate(a,b,op){
 
 }
 
+//Truncates numers to six decimals
 function truncate(n){
     return (Math.floor(n*1000000)/1000000)
 }
@@ -43,10 +47,12 @@ function operationCallBack(e){
     const ifield = document.querySelector(".input.field");
     const ofield = document.querySelector(".output.field");
     const butOp = e.target.textContent;
+    //If the input is empty or just a dot
     if((!ifield.textContent)||(ifield.textContent==".")){
         if(!ans) ans=0;
         currOp=butOp;
     }
+    //If output is empty or there isn't a current operation
     else if((!ofield.textContent)||(!currOp)){
         ans = +ifield.textContent;
         ifield.textContent="";
@@ -54,7 +60,7 @@ function operationCallBack(e){
     }
     else{
         let aux = truncate(calculate(+ans,+ifield.textContent,currOp))
-        if((!isNaN(aux))){
+        if((!isNaN(aux))){ //If the operation wasn't a division by 0
             ans=aux;
             currOp=butOp;
             ifield.textContent="";
@@ -69,7 +75,7 @@ function operationCallBack(e){
 function equalCallBack(){
     const ifield = document.querySelector(".input.field");
     const ofield = document.querySelector(".output.field");
-    if((ifield.textContent)&&(ofield.textContent)){
+    if((ifield.textContent)&&(ofield.textContent)&&(currOp)){
         let aux = truncate(calculate(+ans,+ifield.textContent,currOp))
         if((!isNaN(aux))){
             ans=aux;
@@ -99,6 +105,7 @@ function keyboardCallBack(e){
 
 }
 
+//Asing callbacks to element's events
 const operands = document.querySelectorAll(".button.operand");
 operands.forEach(operand=>{
     operand.addEventListener("click",operandCallback);
