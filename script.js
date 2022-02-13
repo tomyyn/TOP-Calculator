@@ -5,13 +5,15 @@ let currOp ='';
 //Callbacks
 function operandCallback(e){
     const field = document.querySelector(".input.field");
-    if(field.textContent != "0")field.textContent+=e.target.textContent;
-    else field.textContent=e.target.textContent;
+    if(field.textContent.length<14){
+        if(field.textContent != "0")field.textContent+=e.target.textContent;
+        else field.textContent=e.target.textContent;
+    }
 }
 
 function decimalCallBack(){
     const field = document.querySelector(".input.field");
-    if(field.textContent.indexOf('.') == -1) field.textContent+="."
+    if((field.textContent.indexOf('.') == -1) && (field.textContent.length<14)) field.textContent+="."
 }
 
 function backSpaceCallBack(){
