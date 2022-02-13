@@ -7,12 +7,12 @@ function operandCallback(e){
     else field.textContent=e.target.textContent;
 }
 
-function decimalCallBack(e){
+function decimalCallBack(){
     const field = document.querySelector(".input.field");
     if(field.textContent.indexOf('.') == -1) field.textContent+="."
 }
 
-function backSpaceCallBack(e){
+function backSpaceCallBack(){
     const field = document.querySelector(".input.field");
     if(field.textContent) field.textContent=field.textContent.slice(0,field.textContent.length-1)
 }
@@ -48,7 +48,7 @@ function operationCallBack(e){
         if(!ans) ans=0;
         currOp=butOp;
     }
-    else if(!ofield.textContent){
+    else if((!ofield.textContent)||(!currOp)){
         ans = +ifield.textContent;
         ifield.textContent="";
         currOp=butOp;
@@ -67,6 +67,20 @@ function operationCallBack(e){
     ofield.textContent=ans+currOp;
 }
 
+function equalCallBack(){
+    const ifield = document.querySelector(".input.field");
+    const ofield = document.querySelector(".output.field");
+    if((ifield.textContent)&&(ofield.textContent)){
+        let aux = truncate(calculate(+ans,+ifield.textContent,currOp))
+        if((!isNaN(aux))){
+            ans=aux;
+            currOp="";
+            ifield.textContent="";
+            ofield.textContent=ans;
+        }
+    }
+}
+
 const operands = document.querySelectorAll(".button.operand");
 operands.forEach(operand=>{
     operand.addEventListener("click",operandCallback);
@@ -82,3 +96,6 @@ decimal.addEventListener("click",decimalCallBack);
 
 const backSpace = document.querySelector("#backSpace");
 backSpace.addEventListener("click",backSpaceCallBack);
+
+const equal = document.querySelector(".button.equal");
+equal.addEventListener("click",equalCallBack);
