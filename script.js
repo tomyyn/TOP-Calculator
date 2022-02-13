@@ -43,7 +43,6 @@ function operationCallBack(e){
     const ifield = document.querySelector(".input.field");
     const ofield = document.querySelector(".output.field");
     const butOp = e.target.textContent;
-    console.log(ifield.textContent)
     if((!ifield.textContent)||(ifield.textContent==".")){
         if(!ans) ans=0;
         currOp=butOp;
@@ -90,6 +89,16 @@ function ACCallBack(){
     ofield.textContent="";
 }
 
+function keyboardCallBack(e){
+    if((e.key >= "0") && (e.key <="9")) operandCallback({target:{textContent:`${e.key}`}})
+    else if(e.key=="Enter") equalCallBack();
+    else if(e.key=="Escape") ACCallBack();
+    else if(e.key==".") decimalCallBack();
+    else if(e.key=="Backspace") backSpaceCallBack();
+    else if((e.key=="+")||(e.key=="-")||(e.key=="*")||(e.key=="/")) operationCallBack({target:{textContent:`${e.key}`}})
+
+}
+
 const operands = document.querySelectorAll(".button.operand");
 operands.forEach(operand=>{
     operand.addEventListener("click",operandCallback);
@@ -110,4 +119,6 @@ const equal = document.querySelector(".button.equal");
 equal.addEventListener("click",equalCallBack);
 
 const AC = document.querySelector("#AC");
-AC.addEventListener("click",ACCallBack)
+AC.addEventListener("click",ACCallBack);
+
+document.addEventListener("keydown",keyboardCallBack);
