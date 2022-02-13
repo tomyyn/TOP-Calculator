@@ -73,6 +73,28 @@ body{
     text-align: right;
 }
 
+.buttons{
+    width:380px;
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:5px;
+    column-gap: 10px;
+    padding-bottom: 10px;
+}
+
+.button{
+    box-sizing: border-box;
+    height: 55px;
+    width: 80px;
+}
+
+.button.long{
+    width: 170px;
+}
+
 .footer{
     display: flex;
     justify-content: center;
