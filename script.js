@@ -81,6 +81,15 @@ function equalCallBack(){
     }
 }
 
+function ACCallBack(){
+    ans="";
+    currOp="";
+    const ifield = document.querySelector(".input.field");
+    const ofield = document.querySelector(".output.field");
+    ifield.textContent="";
+    ofield.textContent="";
+}
+
 const operands = document.querySelectorAll(".button.operand");
 operands.forEach(operand=>{
     operand.addEventListener("click",operandCallback);
@@ -99,3 +108,6 @@ backSpace.addEventListener("click",backSpaceCallBack);
 
 const equal = document.querySelector(".button.equal");
 equal.addEventListener("click",equalCallBack);
+
+const AC = document.querySelector("#AC");
+AC.addEventListener("click",ACCallBack)
