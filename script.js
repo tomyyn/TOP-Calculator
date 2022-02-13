@@ -23,7 +23,7 @@ function calculate(a,b,op){
             return a+b;
         case "-":
             return a-b;
-        case "+":
+        case "*":
             return a*b;
         case "/":
             if(b!=0) return a/b;
@@ -36,7 +36,7 @@ function calculate(a,b,op){
 }
 
 function truncate(n){
-    return (Math.floor(n*10000)/10000)
+    return (Math.floor(n*1000000)/1000000)
 }
 
 function operationCallBack(e){
@@ -55,7 +55,7 @@ function operationCallBack(e){
     }
     else{
         let aux = truncate(calculate(+ans,+ifield.textContent,currOp))
-        if(!isNaN(aux)){
+        if((!isNaN(aux))){
             ans=aux;
             currOp=butOp;
             ifield.textContent="";
