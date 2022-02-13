@@ -85,6 +85,21 @@ body{
     padding-bottom: 10px;
 }
 
+.button.operand,
+.button.decimal{
+    background-color: silver;
+}
+
+.button.operation{
+    background-color: rgb(58, 58, 73);
+    color:silver;
+}
+
+.button.long,
+.button.equal{
+    background-color: rgb(224, 159, 38);
+}
+
 .button{
     box-sizing: border-box;
     height: 55px;
