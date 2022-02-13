@@ -35,6 +35,10 @@ function calculate(a,b,op){
 
 }
 
+function truncate(n){
+    return (Math.floor(n*10000)/10000)
+}
+
 function operationCallBack(e){
     const ifield = document.querySelector(".input.field");
     const ofield = document.querySelector(".output.field");
@@ -50,7 +54,7 @@ function operationCallBack(e){
         currOp=butOp;
     }
     else{
-        let aux = calculate(+ans,+ifield.textContent,currOp)
+        let aux = truncate(calculate(+ans,+ifield.textContent,currOp))
         if(!isNaN(aux)){
             ans=aux;
             currOp=butOp;
