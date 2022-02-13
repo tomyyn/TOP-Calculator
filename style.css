@@ -5,12 +5,13 @@ body{
     justify-content: space-between;
     align-items:stretch;
     margin:0px;
+    background-color: rgb(224, 144, 24);
 }
 
 
 .header,
 .footer{
-    background-color: rgb(11, 11, 80);
+    background-color: rgb(143, 94, 45);
 }
 
 .header{
